@@ -18,16 +18,24 @@ app.use(cors());
 app.use(express.static(__dirname));
 app.use('/uploads', express.static('uploads'));
 
-// --- 1. الاتصال بقاعدة البيانات (نظام الـ Pool لضمان استقرار الربط) ---
 const db = mysql.createPool({
-host: 'mysql-37412ec6-gaueng.l.aivencloud.com',
+    host: 'mysql-37412ec6-gaueng.l.aivencloud.com',
     port: 12740,
     user: 'avnadmin',
-    password: 'AVNS_GatFmA-TfMR5SbWNdM-',
+    password: 'AVNS_GatFmA-TfMR5SbWNdM-', 
     database: 'defaultdb',
     ssl: { rejectUnauthorized: false },
-    waitForConnections: true,
-    connectionLimit: 10
+    connectTimeout: 10000 // ينتظر 10 ثواني قبل ما يفصل
+});
+
+// هذا السطر سيكشف لنا السر في الـ Logs
+db.getConnection((err, connection) => {
+    if (err) {
+        console.error("❌ فشل الاتصال الحقيقي: ", err.message);
+    } else {
+        console.log("✅ اتصلت بالداتابيز بنجاح!");
+        connection.release();
+    }
 });
 
 // تهيئة الجداول تلقائياً
