@@ -8,7 +8,11 @@ const cors = require('cors');
 const multer = require('multer'); 
 const path = require('path');
 const bcrypt = require('bcryptjs');
-
+const fs = require('fs');
+const uploadDir = './uploads';
+if (!fs.existsSync(uploadDir)){
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 const app = express();
 
 // --- إعدادات الحماية والبيانات ---
