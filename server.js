@@ -20,7 +20,7 @@ app.use('/uploads', express.static('uploads'));
 
 // --- 1. الاتصال بقاعدة البيانات (نظام الـ Pool لضمان استقرار الربط) ---
 const db = mysql.createPool({
-    host: 'mysql-37412ec6-gaueng-portal.l.aivencloud.com', // أضفنا -portal هنا
+host: 'mysql-37412ec6-gaueng.l.aivencloud.com',
     port: 12740,
     user: 'avnadmin',
     password: 'AVNS_GatFmA-TfMR5SbWNdM-',
