@@ -9,7 +9,7 @@ const cors = require('cors');
 const multer = require('multer'); 
 const path = require('path');
 const bcrypt = require('bcryptjs');
-const fs = require('fs'); // استدعاء واحد فقط يكفي
+const fs = require('fs');    
 
 // --- إعدادات السحابة والمجلدات ---
 const uploadDir = path.join(__dirname, 'uploads');
