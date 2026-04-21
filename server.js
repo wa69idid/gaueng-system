@@ -10,7 +10,15 @@ const multer = require('multer');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
+// هذا الجزء السحري اللي راح يحل مشكلة الـ ENOENT
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+    console.log("✅ تم إنشاء مجلد uploads بنجاح!");
+}
 const app = express();
 
 // --- إعدادات السحابة والمجلدات ---
