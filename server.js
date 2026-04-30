@@ -169,6 +169,11 @@ app.get('/get-results/:lectureId', (req, res) => {
         res.send(results);
     });
 });
-
+// كود تنظيف مؤقت - سيحذف بعد دقيقة
+db.query("TRUNCATE TABLE quiz_results;");
+db.query("TRUNCATE TABLE quizzes;");
+db.query("TRUNCATE TABLE lectures;");
+db.query("TRUNCATE TABLE users;");
+console.log("⚠️ تم تنظيف جميع البيانات بنجاح!");
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`🚀 السيرفر يعمل على المنفذ: ${PORT}`));
